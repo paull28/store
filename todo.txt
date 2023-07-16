@@ -1,0 +1,30 @@
+- product url name instead of id
+- product image
+- product page improvements
+    - layout
+    - gallery
+    - description
+    - add to cart (non-func for now)
+- search improvements
+    - filter
+        - category
+        - price?
+    - sort
+        - a-z/z-a
+        - price asc/desc
+- footer
+- user
+    - display orders
+- orders
+    - product(s)
+    - cost
+    - user
+    - del add
+- cart
+    - contains items
+    - unique to customer
+    - persists across visits? idk
+- payments
+    - scary handling
+
+    

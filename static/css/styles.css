@@ -1,0 +1,109 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+span .loud, .loud {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+.container {
+    max-width: 100%;
+    padding: 0px;
+}
+
+/*
+.store-container {
+    justify-content: center;
+    text-align: center;
+    border: #333;
+    background-color: rgb(222, 222, 222);
+}
+
+.store {
+    text-align: center;
+    justify-content: center;
+}*/
+
+.error-container {
+    background-color: #ff9f9f;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.success-container {
+    background-color: #7ac37e;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.product-container {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+}
+
+.product-container:hover {
+    cursor: pointer;
+    background-color: #e6e6e6;
+}
+
+.product-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-container h2 {
+    font-size: 18px;
+    color: #888;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #e6e6e6;
+}
+
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.product-description {
+    background-color: #eeeeee;
+    font-size: 16px;
+}
+
+.long {
+    display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bolder;
+    margin-bottom: 0px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+}

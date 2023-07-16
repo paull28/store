@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Browse</title>
+{% endblock title %}
+
+{% block content %}
+
+<span class="loud">Welcome to my store!</span>
+
+<div class="container store">
+    <div class="row">
+    {% if products %}
+        {% for product in products %}
+            <div class="col-12 col-md-4">
+                <div class="product-container" data-product-id="{{ product.id}}">
+                    <span>
+                        <h1>{{ product.name }}</h1>
+                        <h1>£{{ product.cost }}</h1>
+                        <span class="description long">{{ product.description }}</span>
+                    </span>
+                </div>
+            </div>
+            
+        {% endfor %}
+    {% else %}
+    <div class="error-container">
+        <span>Error loading store.</span>
+    </div>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Search Results</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if query %}
+        <div class="row">
+            <span>Results for "{{ query }}":</span>
+        </div>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-12 col-md-4">
+                        <div class="product-container" data-product-id="{{ product.id}}">
+                                <span class="name long">{{ product.name }}</span>
+                                <span class="price">£{{ product.cost }}</span>
+                                <span class="description long">{{ product.description }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        <div class="error-container">
+            <span>No products found.</span>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
