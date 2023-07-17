@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Sign-in</title>
+{% endblock title%}
+
+{% block content %}
+
+<div class="container login-container">
+    <h2 class="loud">Login</h2>
+    <div class="row">
+        <div class="col login">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="field">
+                        <span>Username</span>
+                        {{ form.username }}
+                    </div>
+                    <div class="field">
+                        <span>Password</span>
+                        {{ form.password }}
+                    </div>
+                    <div class="row button-row">
+                        <button class="login-button" type="submit">Log In</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row button-row">
+        <span class="signup-text">Don't have an account?</span>
+    </div>
+    <div class="row button-row">
+        <button class="signup-button" onclick="location.href='{% url 'signup_user' %}'">Register</button>
+    </div>
+</div>
+
+
+{% endblock content %}
