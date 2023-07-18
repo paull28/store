@@ -4,18 +4,51 @@
 {% endblock title%}
 
 {% block content %} 
-<section>
-    <h2>Sign Up</h2>
-    <!-- Registration form -->
-    <form method="post">
-        <!-- Security token -->
-        {% csrf_token %}
-        <!-- Using the formset -->
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
-    <br><br><br><br>
-    <h3>Already have an account?</h3>
-    <button onclick="location.href='/accounts/login'">Login</button>
-</section>
+<div class="container login-container">
+    <span class="loud top">Register</span>
+    <div class="row">
+        <div class="col login">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="field">
+                        <span>Username</span>
+                        {{ form.username }}
+                        <span class="quiet">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                    </div>
+                    <div class="field">
+                        <span>Email</span>
+                        {{ form.email }}
+                    </div>
+                    <div class="field">
+                        <span>Password</span>
+                        {{ form.password1 }}
+                        <!--
+                            Your password can’t be too similar to your other personal information.
+Your password must contain at least 8 characters.
+Your password can’t be a commonly used password.
+Your password can’t be entirely numeric.
+                        -->
+                    </div>
+                    <div class="field">
+                        <span>Confirm Password</span>
+                        {{ form.password2 }}
+                        <span class="quiet">Enter the same password as before, for verification.</span>
+                    </div>
+                    <div class="row button-row">
+                        <button class="login-button" type="submit">Register</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row button-row">
+        <span class="signup-text">Already have an account?</span>
+    </div>
+    <div class="row button-row">
+        <button class="signup-button" onclick="location.href='{% url 'login' %}'">Login</button>
+    </div>
+</div>
+
 {% endblock content %} 

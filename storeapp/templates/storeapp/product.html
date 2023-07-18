@@ -12,15 +12,39 @@
 {% block content %}
 <div class="container">
 {% if product %}
-    <div class="row product-name">
-            <span>{{product.name}}</span>
+    <div class="top container product-view-container">
+        <div class="row">
+            <span class="loud">{{product.name}}</span>
     </div>
-    <div class="row product-description">
-        <span>{{product.description}}</span>
+    <div class="row">
+        <span class="semi-loud">£{{product.cost}} per unit</span>
+    </div>
+    <div class="row">
+        <span>Quantity:
+        <select id="qty-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <div class="row">    
+        <button class="add-to-basket-button" type="submit">Add to basket</button>
+    </div>
+    <div class="row quiet">
+        <span>Our code: </span>
+    </div>
+    <div class="row quiet">
+        <span>Manufacturers code: </span>
+    </div>
+    <div class="row">
+        <span class="">Description: {{product.description}}</span>
      </div>
+    </div>
     
 {% else %}
-    <div class="error-container">
+    <div class="top container error-container centered">
         <span>Could not find product.</span>
     </div>
 {% endif %}

@@ -23,6 +23,8 @@ def product(request, pid):
 def search(request):
     context = {}
     query = request.GET.get('query')
+    sort_by = request.GET.get('sort_by', 'a-z')
+
     if query:
         try:
             query_words = query.split()
@@ -37,8 +39,18 @@ def search(request):
             pass
         if products:
             products=list(set(products))
+            if sort_by == 'a-z':
+                products.sort(key=lambda x: x.name)
+            elif sort_by == 'z-a':
+                products.sort(key=lambda x: x.name, reverse=True)
+            elif sort_by == 'priceLTH':
+                products.sort(key=lambda x: x.cost)
+            elif sort_by == 'priceHTL':
+                products.sort(key=lambda x: x.cost, reverse=True)
+
             context["products"] = products
         context["query"] = query
+        context["sort_by"] = sort_by
     
     return render(request, 'storeapp/search.html', context)
 
@@ -50,9 +62,14 @@ class RegisterUser(CreateView):
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login')
 
+@login_required
+def account(request):
+    context={}
+    return render(request, 'storeapp/account.html', context)
+
 #View to update User record
 @login_required
-def updateUser(request):
+def update_user(request):
     context={}
     #Get user details
     user = request.user
@@ -66,7 +83,7 @@ def updateUser(request):
 
 #View to delete User
 @login_required
-def deleteUser(request):
+def delete_user(request):
     context={}
     user = request.user
     if request.method == "POST":
@@ -74,3 +91,14 @@ def deleteUser(request):
         user.delete()
         return redirect('/store')
     return render(request, "registration/deleteUser.html", context)
+
+@login_required
+def orders(request):
+    context={}
+    user = request.user
+    try:
+        results = CustomerOrder.objects.filter(customer=user.id)
+        context["orders"] = results
+    except:
+        pass
+    return render(request, 'storeapp/orders.html', context)

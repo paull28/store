@@ -16,9 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from storeapp import views
 
 urlpatterns = [
     path('', lambda reuqest: redirect('store/', permanent=False)),
     path('store/', include('storeapp.urls')),
     path('admin/', admin.site.urls),
+    #Account related URLs:
+    path('accounts/', include('django.contrib.auth.urls')), #Accounts, used to login (accounts/login)
+    path('accounts/', views.account, name='account'),
+    path('accounts/signup/', views.RegisterUser.as_view(), name='signup_user'), #Signup page
+    path('accounts/edit/', views.update_user, name="update_user"),
+    path('accounts/delete/', views.delete_user, name="delete_user"),
+
+    path('accounts/orders', views.orders, name='orders'),
 ]

@@ -1,7 +1,7 @@
 {% load static %}
-<div class="container d-flex justify-content-between navbar">
+<div class="d-flex justify-content-between navbar">
     <div class="logo align-self-center">
-        <a class="" href="/store">EpicLogo</a>
+        <a class="logo" href="/store">ShopOnline</a>
     </div>
     <div class="row align-self-center navbar-row">
         <div class="col navbar-col ">
@@ -15,9 +15,24 @@
             </form>
         </div>
         <div class="col navbar-col ">
-            <a href="/store/account/login">
-                <img src="{% static 'media/avatar.png' %}" width="32" height="32">
+            <a href="#">
+                <img src="{% static 'media/shopping-cart.png' %}" width="24" height="24">
             </a>
+        </div>
+        <div class="col navbar-col">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'media/avatar.png' %}" width="32" height="32"></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    {% if user.username %}
+                    <span class="dropdown-header">{{user.username}}</span>
+                    <a class="dropdown-item" href="{% url 'orders' %}">View Orders</a>
+                    <a class="dropdown-item" href="{% url 'account' %}">Manage Account</a>
+                    <a class="dropdown-item" href="{% url 'logout'%}">Logout</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login'%}">Sign In</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

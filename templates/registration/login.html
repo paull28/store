@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container login-container">
-    <h2 class="loud">Login</h2>
+    <span class="loud top">Login</span>
     <div class="row">
         <div class="col login">
             <form method="POST" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
         <span class="signup-text">Don't have an account?</span>
     </div>
     <div class="row button-row">
-        <button class="signup-button" onclick="location.href='{% url 'signup_user' %}'">Register</button>
+        <button class="signup-button" onclick='location.href="{% url 'signup_user'%}"'>Register</button>
     </div>
 </div>
 

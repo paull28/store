@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Account</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container store">
+    <div class="container account-container">
+        <span class="loud top">Account details</span>
+        {% if user.is_staff == 1 %}
+        <div class="container success-container top">
+            <span class="">This account has staff permissions.</span>
+            <span><a href="/admin/">Access admin panel</a></span>
+        </div>
+        {% endif %}
+        <div class="row top">
+            <div class="col top">
+                <span>Username: {{user.username}}</span>
+            </div>
+            <div class="col top">
+                <span>Email: {{user.email}}</span>
+            </div>
+        </div>
+        <div class="col">    
+            <button class="add-to-basket-button" onclick='location.href="{% url 'update_user'%}"'>Edit details</button>
+        </div>
+        <div class="row top">
+            <div class="col">
+                <span class="top semi-loud">Activity</span>
+            </div>
+        </div>    
+        <div class="row">
+            <div class="col">
+                <span>Last login: {{user.last_login|date:"d/m/Y H:i"}}</span>
+            </div>
+            <div class="col">
+                <span>Joined: {{user.date_joined|date:"d/m/Y H:i"}}</span>
+            </div>
+        </div>
+        <div class="col">
+            <span class="top quiet text-center">Times shown in GMT</span>
+        </div>
+    </div>
+</div>
+{% endblock content %}

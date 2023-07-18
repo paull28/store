@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Orders</title>
+{% endblock title %}
+
+{% block content %}
+<span class="loud top">Your orders</span>
+
+<div class="container store">
+    {% if orders %}
+        {% for order in orders %}
+        <div class="container order-container">
+            <div class="row semi-loud">
+                <span>£{{order.total}}&nbsp;|&nbsp;{{ order.date }}</span>
+            </div> 
+            <div class="row">
+                <span>Order ID: {{ order.id }}</span>
+            </div>  
+            <div class="row">
+                <span>Delivery name: {{order.delivery.fname}} {{order.delivery.lname}}</span>
+            </div>
+            <div>
+                <div class="row address-line">
+                    <span>{{order.delivery.postcode}}</span>
+                </div>
+                <div class="row address-line">
+                    <span>{{order.delivery.line1}}</span>
+                </div>
+                <div class="row address-line">
+                    <span>{{order.delivery.line2}}</span>
+                </div>
+                <div class="row address-line">
+                    <span>{{order.delivery.line2}}</span>
+                </div>
+                <div class="row address-line">
+                    <span>{{order.delivery.country}}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="container error-container centered">
+        <span>No orders to show.</span>
+    </div>
+    {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

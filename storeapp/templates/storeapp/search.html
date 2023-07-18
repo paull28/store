@@ -6,11 +6,27 @@
 
 {% block content %}
 <div class="container">
-    {% if query %}
-        <div class="row">
-            <span>Results for "{{ query }}":</span>
+        <div class="row top">
+            <div class="col centered">
+                <span>Search query: "{{ query }}"</span>
+            </div>
+            <div class="col centered">
+                <span>
+                    Sort By:
+                    <select id="sort-by-select" onchange="handleSortChange()">
+                        <option value="a-z" {% if sort_by == 'a-z' %}selected{% endif %}>Name (A-Z)</option>
+                        <option value="z-a" {% if sort_by == 'z-a' %}selected{% endif %}>Name (Z-A)</option>
+                        <option value="priceLTH" {% if sort_by == 'priceLTH' %}selected{% endif %}>Price (Asc.)</option>
+                        <option value="priceHTL" {% if sort_by == 'priceHTL' %}selected{% endif %}>Price (Desc.)</option>
+                        <!-- Add other sorting options here -->
+                    </select>
+                </span>
+            </div>
         </div>
         {% if products %}
+        <div class="container success-container centered">
+            <span>Results found</span>
+        </div>
             <div class="row">
                 {% for product in products %}
                     <div class="col-12 col-md-4">
@@ -23,10 +39,9 @@
                 {% endfor %}
             </div>
         {% else %}
-        <div class="error-container">
-            <span>No products found.</span>
+        <div class="container error-container centered">
+            <span>No results found</span>
         </div>
         {% endif %}
-    {% endif %}
 </div>
 {% endblock %}
