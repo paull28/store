@@ -4,15 +4,41 @@
 {% endblock title%}
 
 {% block content %}
-<section>
-    <br><h2>Update your account:</h2>
-    <!-- Update user form -->
-    <form method="post">
-        <!-- Security token -->
-        {% csrf_token %}
-        <!-- Using the formset -->
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</section>
+<div class="container login-container centered">
+    <span class="loud top centered">Update Details</span>
+    <div class="row">
+        <div class="col login">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="field">
+                        <span>Username</span>
+                        {{ form.username }}
+                        <span class="quiet">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                    </div>
+                    <div class="field">
+                        <span>Email</span>
+                        {{ form.email }}
+                    </div>
+                    <div class="field">
+                        <span>Password</span>
+                        {{ form.password1 }}
+                        <span class="quiet">Password you want to use - new or current.</span>
+                    </div>
+                    <div class="field">
+                        <span>Confirm Password</span>
+                        {{ form.password2 }}
+                        <span class="quiet">Enter the same password as before, for verification.</span>
+                    </div>
+                    <div class="row button-row">
+                        <button class="login-button" type="submit">Confirm</button>
+                    </div>
+                    <div class="row button-row top">
+                        <button class="signup-button" onclick="location.href='{% url 'account' %}'">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

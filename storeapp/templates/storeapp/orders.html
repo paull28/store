@@ -6,12 +6,13 @@
 {% endblock title %}
 
 {% block content %}
-<span class="loud top">Your orders</span>
+<span class="loud top centered">Your orders</span>
 
 <div class="container store">
     {% if orders %}
+    <span class="quiet centered">Newest -> Oldest</span>
         {% for order in orders %}
-        <div class="container order-container">
+        <div class="container order-container top">
             <div class="row semi-loud">
                 <span>£{{order.total}}&nbsp;|&nbsp;{{ order.date }}</span>
             </div> 
@@ -23,9 +24,6 @@
             </div>
             <div>
                 <div class="row address-line">
-                    <span>{{order.delivery.postcode}}</span>
-                </div>
-                <div class="row address-line">
                     <span>{{order.delivery.line1}}</span>
                 </div>
                 <div class="row address-line">
@@ -33,6 +31,9 @@
                 </div>
                 <div class="row address-line">
                     <span>{{order.delivery.line2}}</span>
+                </div>
+                <div class="row address-line">
+                    <span>{{order.delivery.postcode}}</span>
                 </div>
                 <div class="row address-line">
                     <span>{{order.delivery.country}}</span>

@@ -77,7 +77,7 @@ def update_user(request):
     if form.is_valid():
         #Overwrite existing record
         form.save()
-        return redirect('/store')
+        return redirect('/account/')
     context["form"] = form
     return render(request, "registration/updateUser.html", context)
 
@@ -97,7 +97,7 @@ def orders(request):
     context={}
     user = request.user
     try:
-        results = CustomerOrder.objects.filter(customer=user.id)
+        results = CustomerOrder.objects.filter(customer=user.id).order_by('-id')
         context["orders"] = results
     except:
         pass
