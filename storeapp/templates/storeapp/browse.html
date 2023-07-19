@@ -6,9 +6,9 @@
 {% endblock title %}
 
 {% block content %}
-<span class="loud top">Welcome to my store{% if user.username %}, {{user.username}}{% endif %}!</span>
-
 <div class="container store">
+    <span class="loud top">Welcome to my store{% if user.username %}, {{user.username}}{% endif %}!</span>
+    {% include 'messages.html' %}
     <div class="row">
     {% if products %}
         {% for product in products %}

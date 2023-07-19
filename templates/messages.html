@@ -1,0 +1,14 @@
+<!-- If there is a message: -->
+{% if messages %}
+<div class="row">
+    <!-- For each message, -->
+    {% for message in messages %}
+        <!-- Write it to the webpage-->
+        <div class="container centered top {% if message.tags %} {{ message.tags }}"{% endif %}>
+            <span>
+                {{ message }}
+            </span>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

@@ -27,4 +27,15 @@
 - payments
     - scary handling
 
+
+NEW TODO:
+
+- add messages
+    - login, logout, added to basket, removed from basket, etc.
+- actual basket
+    - session["basket"] or database
+        - product + qty
+        - add, remove, edit
+
+
     

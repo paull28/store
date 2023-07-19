@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 from .models import *
 from .forms import *
 
@@ -24,7 +26,6 @@ def search(request):
     context = {}
     query = request.GET.get('query')
     sort_by = request.GET.get('sort_by', 'a-z')
-
     if query:
         try:
             query_words = query.split()
@@ -54,6 +55,31 @@ def search(request):
     
     return render(request, 'storeapp/search.html', context)
 
+class CustomLoginView(LoginView):
+
+    def form_valid(self, form):
+        # Custom logic here, if needed
+        print("yes")
+        messages.success(self.request, 'Login successful.')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("no")
+        # Custom logic here, if needed
+        messages.error(self.request, 'Login failed. Please try again.')
+        return super().form_invalid(form)
+
+class CustomLogoutView(LogoutView):
+
+    def dispatch(self, request, *args, **kwargs):
+        # Display the logout message
+        messages.success(request, 'Logout successful.')
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_next_page(self):
+        # Provide the URL to redirect after logout
+        return reverse_lazy('/store/')  # Replace 'home' with the desired URL
+    
 #View to register a user
 class RegisterUser(CreateView):
     #Setup form
@@ -77,7 +103,11 @@ def update_user(request):
     if form.is_valid():
         #Overwrite existing record
         form.save()
-        return redirect('/account/')
+        messages.success(request, "Details updated.")
+        return redirect('/accounts/')
+    else:
+        messages.error(request, "Details not updated.")
+
     context["form"] = form
     return render(request, "registration/updateUser.html", context)
 
