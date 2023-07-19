@@ -102,3 +102,13 @@ def orders(request):
     except:
         pass
     return render(request, 'storeapp/orders.html', context)
+
+def basket(request):
+    context = {}
+    context["basket"] = "yes"
+    return render(request, "storeapp/basket.html", context)
+
+def checkout(request):
+    context = {}
+    context["basket"] = "yes"
+    return render(request, "storeapp/checkout.html", context)

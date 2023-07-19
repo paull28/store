@@ -150,6 +150,19 @@ span .quiet, .quiet {
     margin-left: 10px;
 }
 
+.basket-container {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+}
+
+.delivery-container {
+    padding-left: 15px;
+}
+
 .navbar {
     width: 100%;
     background-color: #e6e6e6;
@@ -215,6 +228,15 @@ text-align: center;
     border: none;
     cursor: pointer;
     border-radius: 4px;
+}
+.login-button-red {
+margin-top: 10px;
+background-color: #ff9f9f;
+color: #fff;
+padding: 10px 30px;
+border: none;
+cursor: pointer;
+border-radius: 4px;
 }
 
 .button-row {
@@ -291,4 +313,33 @@ form {
     font-size: 14px;
     text-indent: 5px;
     font-weight: lighter;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+th {
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+tfoot th {
+    background-color: #e0e0e0;
+}
+
+tfoot th.tfoot-item {
+    font-weight:normal;
+}
+
+.right {
+    justify-content: right;
+    padding-right: 15px;
 }

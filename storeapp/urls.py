@@ -5,5 +5,7 @@ urlpatterns = [
     path('', views.browse, name='browse'), #Browse all products
     path('<int:pid>/', views.product, name='product'), #View a specific product
     path('search/', views.search, name='search'), #Search for products
+    path('basket/', views.basket, name="basket"),
+    path('checkout/', views.checkout, name="checkout"),
 
 ]

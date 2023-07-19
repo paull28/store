@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Basket</title>
+{% endblock title %}
+
+{% block content %}
+<span class="loud top centered">Basket</span>
+
+<div class="container store top">
+    
+    <div class="container basket-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            {% if basket %}
+            <tbody>
+                <!-- { for item in basket } -->
+                <tr>
+                    <td>ABCDEFG</td>
+                    <td>£1.99</td>
+                    <td>x5</td>
+                    <td>£9.95</td>
+                </tr>
+                <tr>
+                    <td>HIJKLMN</td>
+                    <td>£4.99</td>
+                    <td>x5</td>
+                    <td>£24.95</td>
+                </tr>
+                <!-- { endfor } -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total:</th>
+                    <th class="tfoot-item">N/A</th>
+                    <th class="tfoot-item">x10</th>
+                    <th class="">£34.90</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row button-row right">
+            <button class="signup-button top right" onclick='location.href="{% url 'checkout'%}"'>Checkout</button>
+        </div>
+    </div>
+    
+        {% else %}
+    </table>
+    <div class="container error-container centered top">
+        <span class="">Basket is empty.</span>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
