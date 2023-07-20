@@ -46,20 +46,50 @@
     <div class="container basket-container top">
         <span class="semi-loud">Delivery</span>
         <div class="container delivery-container">
-            <div class="row top">
-                <span>First Name:</span>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="field">
+                            <span>First name</span>
+                            <input type="text" name="fname" required>
+                        </div>
+                        <div class="field">
+                            <span>Last name</span>
+                            <input type="text" name="lname" required>
+                        </div>
+                        <div class="field">
+                            <span>Phone number</span>
+                            <input type="text" name="phone_number">
+                        </div>
+                        <span>Address</span>
+                        <div class="field">
+                            <span>Postcode</span>
+                            <input type="text" name="postcode" required>
+                        </div>
+                        <div class="field">
+                            <span>Line 1</span>
+                            <input type="text" name="line1" required>
+                        </div>
+                        <div class="field">
+                            <span>Line 2</span>
+                            <input type="text" name="line2">
+                        </div>
+                        <div class="field">
+                            <span>Line 3</span>
+                            <input type="text" name="line3">
+                        </div>
+                        <div class="field">
+                            <span>Country</span>
+                            <input type="text" name="country" required>
+                        </div>
+                        <div class="field">
+                            <span>Additional instructions</span>
+                            <input type="text" name="delivery_instructions">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <span>Last Name:</span>
-            </div>
-            <div class="row">
-                <span>...</span>
-            </div>
-            <div class="row">
-                <span>...</span>
-            </div>
-        </div>
-        
     </div>
     <div class="container basket-container centered top">
         <span class="semi-loud">Payment</span>
@@ -74,10 +104,10 @@
                     <button class="login-button-red top" onclick='location.href="{% url 'basket'%}"'>Back to Basket</button>
                 </div>
                 <div class="col centered">
-                    <button class="login-button top" onclick='location.href="{% url 'checkout'%}"'>Confirm Order</button>
+                    <button class="login-button top" type="submit">Confirm Order</button>
                 </div>
             </div>
-            
+        </form>
         </div>
     </div>
 

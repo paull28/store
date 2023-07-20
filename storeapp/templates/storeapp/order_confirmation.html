@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Order Confirmation</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container store">
+    <div class="container delivery-container">
+        {% include 'messages.html' %}
+    </div>
+    <div class="container account-container">
+       <div class="row centered">
+            <span>Wow!</span>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

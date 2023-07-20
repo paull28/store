@@ -18,27 +18,20 @@ class Product(models.Model):
     def __str__(self):
         return self.name + " (" + self.category.name + ")"
 
-class DeliveryAddress(models.Model):
-    fname = models.CharField(max_length=255)
-    lname = models.CharField(max_length=255)
-    postcode = models.CharField(max_length=8)
-    line1 = models.CharField(max_length=255)
-    line2 = models.CharField(max_length=255, null=True)
-    line3 = models.CharField(max_length=255, null=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
-    country = models.CharField(max_length=100)
-
-    def __str__(self):
-        return (self.fname + " " + self.lname + " | " 
-                 + self.line1 + ", " + self.line2 + ", "
-                   + ". " + self.country +
-                     ". ")
-
 class CustomerOrder(models.Model):
     total = models.FloatField()
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.now())
-    delivery = models.ForeignKey(DeliveryAddress, on_delete=models.CASCADE)
+    fname = models.CharField(max_length=255, default="Firstname")
+    lname = models.CharField(max_length=255, default="Lastname")
+    postcode = models.CharField(max_length=8, default="Postcode")
+    line1 = models.CharField(max_length=255, default="Line 1")
+    line2 = models.CharField(max_length=255, null=True, default=None)
+    line3 = models.CharField(max_length=255, null=True, default=None)
+    phone_number = models.CharField(max_length=15, null=True, blank=True, default=None)
+    country = models.CharField(max_length=100, default="United Kingdom")
+    delivery_instructions = models.CharField(max_length=400, null=True, blank=True)  # New field for delivery instructions
+
 
     def __str__(self):
         return self.customer.username + ": " + str(self.total)

@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
+from datetime import datetime
 from .models import *
 from .forms import *
 
@@ -182,8 +183,7 @@ def clear_basket(request):
     messages.success(request, 'Basket cleared.')
     return redirect("/store/basket")
 
-
-
+@login_required
 def checkout(request):
     context = {}
     try:
@@ -194,8 +194,48 @@ def checkout(request):
         for item in basket:
             total += item.cost
             count += item.qty
-        context["total_cost"] = round(total, 2)
+        total = round(total, 2)
+        context["total_cost"] = total
         context["count"] = count
-    except:
-        pass
+
+        if request.method == 'POST':
+            fname = request.POST.get('fname')
+            lname = request.POST.get('lname')
+            postcode = request.POST.get('postcode')
+            line1 = request.POST.get('line1')
+            line2 = request.POST.get('line2')
+            line3 = request.POST.get('line3')
+            phone_number = request.POST.get('phone_number')
+            country = request.POST.get('country')
+            delivery_instructions = request.POST.get('delivery_instructions')
+
+            customer = request.user.id
+            date = datetime.now()
+
+            customer_order = CustomerOrder.objects.create(
+            total=total,  # Replace with the actual total value, if available
+            customer=request.user,
+            date=datetime.now(),
+            fname=fname,
+            lname=lname,
+            postcode=postcode,
+            line1=line1,
+            line2=line2,
+            line3=line3,
+            phone_number=phone_number,
+            country=country,
+            delivery_instructions=delivery_instructions
+            )
+
+            messages.success(request, ("Order placed."))
+            return redirect("/store/checkout/order")
+
+    except Exception as e:
+        print(e)
     return render(request, "storeapp/checkout.html", context)
+
+def order_confirmation(request):
+    context = {}
+    
+    messages.info(request, 'processing')
+    return render(request, 'storeapp/order_confirmation.html', context)

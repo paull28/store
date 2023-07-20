@@ -186,6 +186,13 @@ span .quiet, .quiet {
     font-size: 16px;
 }
 
+form {
+    padding-left: 10px;
+}
+.basket-add {
+    width: 45px;
+}
+
 .long {
     display: inline-block;
   width: 100%;

@@ -25,7 +25,7 @@
     <div class="row">
         <form method="post" action="{% url 'add' product.id %}">
             {% csrf_token %}
-            <input type="number" name="quantity" value="1" min="1" max="10">
+            <input class="basket-add" type="number" name="quantity" value="1" min="1" max="10">
             <button class="add-to-basket-button" type="submit">Add to basket</button>
         </form>
     </div>
