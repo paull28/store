@@ -6,10 +6,11 @@
 {% endblock title %}
 
 {% block content %}
-<span class="loud top centered">Basket</span>
-
 <div class="container store top">
-    
+    <span class="loud top centered">Basket</span>
+    <div class="container delivery-container">
+        {% include 'messages.html' %}
+    </div>
     <div class="container basket-container">
         <table>
             <thead>
@@ -18,31 +19,28 @@
                     <th>Unit</th>
                     <th>Qty</th>
                     <th>Total</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             {% if basket %}
             <tbody>
-                <!-- { for item in basket } -->
+                {% for item in basket %}
                 <tr>
-                    <td>ABCDEFG</td>
-                    <td>£1.99</td>
-                    <td>x5</td>
-                    <td>£9.95</td>
+                    <td>{{item.product.id}}</td>
+                    <td>£{{item.product.cost}}</td>
+                    <td>x{{item.qty}}</td>
+                    <td>£{{item.cost}}</td>
+                    <td><a href="{% url 'del' item.id %}">Remove</a></td>
                 </tr>
-                <tr>
-                    <td>HIJKLMN</td>
-                    <td>£4.99</td>
-                    <td>x5</td>
-                    <td>£24.95</td>
-                </tr>
-                <!-- { endfor } -->
+                {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
                     <th>Total:</th>
                     <th class="tfoot-item">N/A</th>
-                    <th class="tfoot-item">x10</th>
-                    <th class="">£34.90</th>
+                    <th class="tfoot-item">x{{count}}</th>
+                    <th class="">£{{total_cost}}</th>
+                    <th><a href="{% url 'clear' %}">CLEAR</a></th>
                 </tr>
             </tfoot>
         </table>
@@ -56,6 +54,10 @@
     <div class="container error-container centered top">
         <span class="">Basket is empty.</span>
     </div>
+    </div>
+    <div class="col centered">
+        <button class="signup-button top" onclick='location.href="{% url 'browse'%}"'>Browse</button>
+
     {% endif %}
 </div>
 

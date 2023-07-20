@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
@@ -135,10 +135,67 @@ def orders(request):
 
 def basket(request):
     context = {}
-    context["basket"] = "yes"
+    try:
+        basket = CartItem.objects.filter(customer=request.user.id)
+        context["basket"] = basket
+        total = 0.0
+        count = 0
+        for item in basket:
+            total += item.cost
+            count += item.qty
+        context["total_cost"] = round(total, 2)
+        context["count"] = count
+    except:
+        pass
     return render(request, "storeapp/basket.html", context)
+
+def add_to_basket(request, pid):
+    context = {}
+    product = get_object_or_404(Product, id=pid)
+    qty = int(request.POST.get('quantity', 1))
+    cost = round((float(product.cost) * qty), 2)
+
+    cart_item, created = CartItem.objects.get_or_create(
+        customer=request.user,
+        product=product,
+        defaults={'qty': qty, 'cost': cost}
+    )
+
+    if not created:
+        cart_item.qty += qty
+        cart_item.cost += cost
+        cart_item.cost = round(cart_item.cost, 2)
+        cart_item.save()
+    messages.success(request, 'Added to basket.')
+    return redirect("/store/"+str(pid))
+
+def remove_from_basket(request, cid):
+    item = get_object_or_404(CartItem, id=cid)
+    item.delete()
+    messages.success(request, 'Row removed from basket.')
+    return redirect("/store/basket")
+
+def clear_basket(request):
+    context={}
+    basket = CartItem.objects.filter(customer=request.user.id)
+    basket.delete()
+    messages.success(request, 'Basket cleared.')
+    return redirect("/store/basket")
+
+
 
 def checkout(request):
     context = {}
-    context["basket"] = "yes"
+    try:
+        basket = CartItem.objects.filter(customer=request.user.id)
+        context["basket"] = basket
+        total = 0.0
+        count = 0
+        for item in basket:
+            total += item.cost
+            count += item.qty
+        context["total_cost"] = round(total, 2)
+        context["count"] = count
+    except:
+        pass
     return render(request, "storeapp/checkout.html", context)

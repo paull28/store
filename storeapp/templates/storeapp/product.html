@@ -11,11 +11,11 @@
 
 {% block content %}
 <div class="container">
-    <div class="container success-container basket-success-container centered top" style="display: none;">
-        <span class="notification-message"></span>
-    </div>
 {% if product %}
-    <div class="top container product-view-container">
+    <div class="container delivery-container">
+        {% include 'messages.html' %}
+    </div>
+    <div class="container product-view-container">
         <div class="row">
             <span class="loud">{{product.name}}</span>
     </div>
@@ -23,17 +23,11 @@
         <span class="semi-loud">£{{product.cost}} per unit</span>
     </div>
     <div class="row">
-        <span>Quantity:
-        <select id="qty-select">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </div>
-    <div class="row">    
-        <button class="add-to-basket-button" type="submit">Add to basket</button>
+        <form method="post" action="{% url 'add' product.id %}">
+            {% csrf_token %}
+            <input type="number" name="quantity" value="1" min="1" max="10">
+            <button class="add-to-basket-button" type="submit">Add to basket</button>
+        </form>
     </div>
     <div class="row quiet">
         <span>Our code: </span>

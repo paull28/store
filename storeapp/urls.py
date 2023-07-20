@@ -8,4 +8,8 @@ urlpatterns = [
     path('basket/', views.basket, name="basket"),
     path('checkout/', views.checkout, name="checkout"),
 
+    path('add/<int:pid>', views.add_to_basket, name='add'),
+    path('del/<int:cid>', views.remove_from_basket, name='del'),
+    path('clear/', views.clear_basket, name='clear'),
+
 ]

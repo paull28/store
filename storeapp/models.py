@@ -43,3 +43,12 @@ class CustomerOrder(models.Model):
     def __str__(self):
         return self.customer.username + ": " + str(self.total)
     
+class CartItem(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    qty = models.PositiveBigIntegerField(default=1)
+    cost = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.qty) + "x " + self.product.name
