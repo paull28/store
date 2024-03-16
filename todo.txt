@@ -30,12 +30,16 @@
 
 NEW TODO:
 
-- add messages
+- |||||||||||||||||| add messages
     - login, logout, added to basket, removed from basket, etc.
-- actual basket
+- ||||||||||||||||||actual basket
     - session["basket"] or database
         - product + qty
         - add, remove, edit
 
+- Clear basket
+- Create summary
+    - text or model based
+    - display on orders
 
     
