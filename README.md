@@ -7,4 +7,4 @@ Very first e-commerce site/application written in Django
 - Cart feature
 - Checkout feature
 
-![](https://github.com/paull28/store/blob/main/store.gif)
+<img src="https://github.com/paull28/store/blob/main/store.gif" width="400">
